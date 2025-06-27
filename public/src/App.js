@@ -1,10 +1,12 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import SetAvatar from "./components/SetAvatar";
 import Chat from "./pages/Chat";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-export default function App() {
+import SetAvatar from "./pages/SetAvatar";
+
+// App
+const App = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -15,4 +17,6 @@ export default function App() {
       </Routes>
     </BrowserRouter>
   );
-}
+};
+
+export default App;
