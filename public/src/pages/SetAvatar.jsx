@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Buffer } from "buffer";
+
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import loader from "../assets/loader.gif";
@@ -6,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import { setAvatarRoute } from "../utils/APIRoutes";
+window.Buffer = Buffer;
 
 const SetAvatar = () => {
   const navigate = useNavigate();
@@ -68,7 +71,8 @@ const SetAvatar = () => {
       const url = `https://api.dicebear.com/7.x/thumbs/svg?seed=${seed}`;
       const res = await fetch(url);
       const svg = await res.text();
-      const base64 = window.btoa(unescape(encodeURIComponent(svg)));
+      const base64 = Buffer.from(svg, 'utf-8').toString('base64');
+
 
       data.push(`data:image/svg+xml;base64,${base64}`);
     }
